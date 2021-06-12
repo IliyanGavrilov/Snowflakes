@@ -28,12 +28,13 @@ void close_file(FILE *fp)
     fclose(fp);
 }
 
-void free_grid(char **arr)
+void free_grid(char **arr, int lines)
 {
     for(int i=0;i<lines;i++)
     {
         free(arr[i]);
     }
+    free(arr);
 }
 
 int get_lines(FILE *fp)
@@ -170,8 +171,8 @@ char snowfall(FILE *fp, int symbol_count, int seconds)
             clear_screen();
         }
     }
-
-   return 0;
+    free_grid(arr, lines);
+    return 0;
 }
 
 int main()
@@ -194,7 +195,6 @@ int main()
     printf("%c\n", snowfall(fp, symbol_count, seconds));
 
     close_file(fp);
-    free(grid);
 
     return 0;
 }
