@@ -11,6 +11,7 @@
 
 FILE* open_file(char *file_name)
 {
+    file_name[strlen(file_name)-1] = '\0';
     FILE *fp;
 
     fp = fopen(file_name, "r");
@@ -182,7 +183,7 @@ int main()
     int seconds;
 
     printf("File Name = ");
-    gets(file_name);
+    fgets(file_name,25,stdin);
 
     FILE *fp = open_file(file_name);
 
